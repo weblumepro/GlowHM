@@ -16,17 +16,17 @@
     }
 
     :root {
-      --cream-50: #fdfcf9;
-      --cream-100: #faf8f2;
-      --cream-200: #f5f1e6;
-      --forest-100: #e6ebe5;
-      --forest-200: #cdd7cb;
-      --forest-300: #a9bba6;
-      --forest-400: #839a7f;
-      --forest-500: #657d62;
-      --forest-600: #4f634c;
-      --forest-700: #404f3e;
-      --forest-800: #364236;
+      --cream-50: #fef9f0;
+      --cream-100: #feeac9;
+      --cream-200: #fbe8e2;
+      --forest-100: #e8f0e9;
+      --forest-200: #d4e3d6;
+      --forest-300: #b8d0ba;
+      --forest-400: #8eb691;
+      --forest-500: #6fa574;
+      --forest-600: #529c62;
+      --forest-700: #42805a;
+      --forest-800: #356548;
       --forest-900: #1a2a1a;
     }
 
@@ -94,10 +94,27 @@
       font-weight: 500;
       letter-spacing: 0.02em;
       transition: color 0.2s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      background-color: var(--forest-600);
+      transition: width 0.3s ease;
     }
 
     .nav-links a:hover {
       color: var(--forest-600);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .mobile-menu-btn {
@@ -196,6 +213,33 @@
       margin: 0 auto;
       padding: 0 24px;
       text-align: center;
+    }
+
+    .hero-image {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--cream-100);
+      border: 1px solid var(--forest-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image.no-image::before {
+      content: 'GlowHour.png';
+      font-size: 0.75rem;
+      color: var(--forest-500);
+      font-weight: 300;
+      letter-spacing: 0.05em;
     }
 
     .hero-badge {
@@ -382,14 +426,30 @@
     }
 
     .meet-avatar {
-      width: 96px;
-      height: 96px;
+      width: 160px;
+      height: 160px;
       background: var(--forest-200);
       border-radius: 50%;
       margin: 0 auto 24px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--forest-300);
+    }
+
+    .meet-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .meet-avatar.no-image::before {
+      content: 'Judy.png';
+      font-size: 0.75rem;
+      color: var(--forest-600);
+      font-weight: 300;
+      letter-spacing: 0.05em;
     }
 
     .meet-avatar svg {
@@ -415,7 +475,18 @@
     .meet-bio {
       color: var(--forest-700);
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.8;
+      text-align: left;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .meet-bio p {
+      margin-bottom: 20px;
+    }
+
+    .meet-bio p:last-child {
+      margin-bottom: 0;
     }
 
     /* Schedule Section */
@@ -820,6 +891,97 @@
       color: var(--forest-600);
     }
 
+    .email-list {
+      margin-top: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .email-list-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--forest-900);
+      margin-bottom: 8px;
+    }
+
+    .email-list-desc {
+      color: var(--forest-600);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    .email-list-form {
+      display: flex;
+      gap: 8px;
+      max-width: 100%;
+    }
+
+    .email-list-form input {
+      flex: 1;
+      padding: 14px 16px;
+      border: 1px solid var(--forest-300);
+      border-radius: 4px;
+      background: var(--cream-50);
+      color: var(--forest-900);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .email-list-form input::placeholder {
+      color: var(--forest-500);
+    }
+
+    .email-list-form input:focus {
+      outline: none;
+      border-color: var(--forest-600);
+    }
+
+    .email-list-form button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background: var(--forest-600);
+      color: var(--cream-50);
+      border: none;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .email-list-form button:hover {
+      background: var(--forest-700);
+    }
+
+    .email-list-form button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .email-list-success {
+      margin-top: 16px;
+      color: var(--forest-600);
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding: 12px 16px;
+      background: var(--forest-100);
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .email-list-form {
+        flex-direction: column;
+      }
+    }
+
     /* Footer */
     footer {
       background-color: var(--forest-900);
@@ -927,6 +1089,9 @@
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
     <div class="hero-content">
+      <div class="hero-image">
+        <img src="GlowHour.png" alt="Glow Hour Matcha" onerror="this.style.display='none';this.parentElement.classList.add('no-image')">
+      </div>
       <div class="hero-badge">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
@@ -936,7 +1101,6 @@
       </div>
       <h1 class="hero-title">Glow Hour</h1>
       <p class="hero-subtitle">Matcha</p>
-      <p class="hero-text">An AAPI women-owned business inspired by community, culture, and tradition.</p>
       <a href="#story" class="hero-cta">
         <span>Discover Our Story</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -963,7 +1127,7 @@
         <p>Glow Hour Matcha is an AAPI women-owned business founded in Ottawa, inspired by community, culture, and tradition.</p>
         <p>Growing up in a Vietnamese household, tea was always part of everyday life. It was more than just a drink—it was a daily ritual woven into moments of connection, conversation, and hospitality.</p>
         <p>As we explored the world of matcha, our appreciation deepened through learning about the craftsmanship, intention, and traditions behind it. We came to realize that matcha is more than just a drink; it is an experience. From the quality of the leaves to the preparation and presentation, every detail contributes to creating the perfect cup.</p>
-        <p>Inspired by this, Glow Hour Matcha was created to bring that experience to Ottawa—a space where community can gather, connect, and discover the beauty of matcha together.</p>
+        <p>Inspired by this, Glow Hour Matcha was created to bring that experience to Ottawa—a space where communities can gather, connect, and discover the beauty of matcha together.</p>
         <p>We believe matcha is more than simply an alternative beverage; it is a ritual that stands on its own. When crafted with quality and care at the forefront, matcha has the power to shift perceptions and create meaningful experiences, even for those who may not have enjoyed it before.</p>
         <p>We continue to honour our Vietnamese heritage through thoughtful and creative pairings, while remaining connected to matcha's origin and traditions. Through every cup, we hope to create a sense of connection, community, and appreciation for the ritual behind matcha.</p>
       </div>
@@ -979,13 +1143,16 @@
       </div>
       <div class="meet-card">
         <div class="meet-avatar">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5 7 7 7 7 7 7s0 0 7-7z"></path>
-          </svg>
+          <img src="Judy.png" alt="Judy, Founder of Glow Hour Matcha" onerror="this.style.display='none';this.parentElement.classList.add('no-image')">
         </div>
-        <h3 class="meet-name">Judy D</h3>
+        <h3 class="meet-name">Meet Judy</h3>
         <p class="meet-role">Founder</p>
-        <p class="meet-bio">Passionate about bringing the art of matcha to Ottawa, Judy founded Glow Hour Matcha to share her love for this traditional beverage while honouring her Vietnamese heritage.</p>
+        <div class="meet-bio">
+          <p>Judy is a full-time student and the founder of Glow Hour Matcha. Ever since discovering matcha, she has always been incredibly particular about how it should taste — believing that a good cup of matcha is all about quality, balance, and craftsmanship.</p>
+          <p>Originally from Toronto, she grew up surrounded by some of the city's best matcha spots and quickly developed a deep appreciation for what truly good matcha should taste like. After moving to Ottawa, she made it her mission to explore nearly every café in the city (and honestly, she still does), but found herself constantly feeling like something was missing.</p>
+          <p>She realized Ottawa lacked the kind of matcha experience she had grown to love — one that focused on quality, intention, and authenticity. Instead of settling, she decided to create it herself. That idea eventually became Glow Hour Matcha.</p>
+          <p>Born from the belief that Ottawa deserved better matcha, Glow Hour Matcha was created to share the experience she fell in love with while building something the community could connect over. We focus on quality above all else — from house-made syrups and carefully sourced tea leaves to premium first-harvest matcha sourced directly from Uji, Japan. Every cup is crafted with intention, because great matcha should never be compromised.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1006,16 +1173,9 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>June 6th</span>
+            <span>July 9</span>
           </div>
-          <div class="schedule-event">Private event with WildSketchFlowerClub</div>
-          <div class="schedule-time">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>11am - 1pm</span>
-          </div>
+          <div class="schedule-event">Distiller SR Corporate</div>
         </div>
         <div class="schedule-item">
           <div class="schedule-date">
@@ -1025,16 +1185,9 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>June 13 & 14</span>
+            <span>July 11-12</span>
           </div>
-          <div class="schedule-event">Vintage Plus Pop Up at Nextdoor Market</div>
-          <div class="schedule-time">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>11am - 5pm</span>
-          </div>
+          <div class="schedule-event">Next Door Market Pop Up</div>
         </div>
         <div class="schedule-item">
           <div class="schedule-date">
@@ -1044,16 +1197,9 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>June 18</span>
+            <span>July 14</span>
           </div>
-          <div class="schedule-event">Private Corporate Event with Kow Connected</div>
-          <div class="schedule-time">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>11am - 2pm</span>
-          </div>
+          <div class="schedule-event">Letasha's Goodies Pop Up</div>
         </div>
         <div class="schedule-item">
           <div class="schedule-date">
@@ -1063,16 +1209,9 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>June 20</span>
+            <span>July 18</span>
           </div>
-          <div class="schedule-event">Private Corporate Event with Kow Connected</div>
-          <div class="schedule-time">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>11am - 3pm</span>
-          </div>
+          <div class="schedule-event">Pilates with Zeinab Private Event</div>
         </div>
         <div class="schedule-item">
           <div class="schedule-date">
@@ -1082,16 +1221,45 @@
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>June 24</span>
+            <span>July 19</span>
           </div>
-          <div class="schedule-event">Private Corporate Event with Distiller SR</div>
-          <div class="schedule-time">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
+          <div class="schedule-event">Letasha's Goodies Pop Up</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-            <span>1pm - 3pm</span>
+            <span>July 20</span>
           </div>
+          <div class="schedule-event">Letasha's Goodies Pop Up</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>July 21</span>
+          </div>
+          <div class="schedule-event">Letasha's Goodies Pop Up</div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-date">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>July 22</span>
+          </div>
+          <div class="schedule-event">Letasha's Goodies Pop Up</div>
         </div>
       </div>
     </div>
@@ -1111,7 +1279,6 @@
           <p class="menu-desc">Our classics, perfected</p>
           <ul class="menu-list">
             <li>Ube Matcha</li>
-            <li>Strawberry Matcha</li>
             <li>Coconut Cloud Matcha</li>
             <li>Tokyo Fog Matcha</li>
             <li>Banana Bread Matcha</li>
@@ -1124,9 +1291,6 @@
             <li>Mango Coconut Matcha</li>
             <li>Lychee Matcha</li>
             <li>Jasmine Matcha</li>
-            <li>Cheese Soy Matcha</li>
-            <li>Matcha Latte with Cheese Cold Foam</li>
-            <li>Double Matcha</li>
             <li>Blueberry Matcha</li>
           </ul>
         </div>
@@ -1134,10 +1298,10 @@
           <h3 class="menu-title">Vietnamese Coffee</h3>
           <p class="menu-desc">A nod to our heritage</p>
           <ul class="menu-list">
+            <li>Signature Viet Coffee</li>
             <li>Ube Viet Coffee</li>
             <li>Salted Cold Foam Viet Coffee</li>
             <li>Coconut Cold Foam Viet Coffee</li>
-            <li>Matcha Cold Foam Viet Coffee</li>
           </ul>
         </div>
       </div>
@@ -1238,17 +1402,6 @@
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
-          <p>Horizontal Events</p>
-        </div>
-        <div class="brand-item">
-          <div class="brand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
           <p>DistillerSR</p>
         </div>
         <div class="brand-item">
@@ -1272,6 +1425,17 @@
             </svg>
           </div>
           <p>Wild Flower Sketch Club</p>
+        </div>
+        <div class="brand-item">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <p>Richcraft Rentals</p>
         </div>
       </div>
     </div>
@@ -1372,6 +1536,24 @@
         <p class="section-label">Shop Online</p>
         <h2 class="section-title">Coming Soon</h2>
         <p class="section-subtitle">We're working on bringing our premium matcha tins, accessories, and other items directly to you. Stay tuned for our online shop launch.</p>
+
+        <div class="email-list">
+          <p class="email-list-title">Get notified when we launch</p>
+          <p class="email-list-desc">Join our mailing list and be the first to know when the shop goes live.</p>
+          <form class="email-list-form" id="emailListForm">
+            <input type="email" id="emailListEmail" name="email" placeholder="Enter your email" required>
+            <button type="submit" id="emailListBtn">
+              <span>Notify Me</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+          <p class="email-list-success" id="emailListSuccess" style="display: none;">
+            Thank you! We'll be in touch when the shop launches.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -1501,6 +1683,37 @@
     submitAnother.addEventListener('click', () => {
       successMessage.style.display = 'none';
       formContainer.style.display = 'block';
+    });
+
+    // Email list signup
+    const emailListForm = document.getElementById('emailListForm');
+    const emailListEmail = document.getElementById('emailListEmail');
+    const emailListBtn = document.getElementById('emailListBtn');
+    const emailListSuccess = document.getElementById('emailListSuccess');
+
+    emailListForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailListEmail.value.trim();
+
+      emailListBtn.disabled = true;
+      emailListBtn.querySelector('span').textContent = 'Subscribing...';
+
+      try {
+        if (supabaseClient) {
+          const { error } = await supabaseClient.from('email_list').insert([{ email }]);
+          if (error) throw error;
+        }
+
+        emailListForm.style.display = 'none';
+        emailListSuccess.style.display = 'block';
+        emailListEmail.value = '';
+      } catch (error) {
+        console.error('Error subscribing:', error);
+        alert('There was an error subscribing. Please try again.');
+      } finally {
+        emailListBtn.disabled = false;
+        emailListBtn.querySelector('span').textContent = 'Notify Me';
+      }
     });
   </script>
 </body>
