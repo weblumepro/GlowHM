@@ -28,6 +28,14 @@
       --forest-700: #42805a;
       --forest-800: #356548;
       --forest-900: #1a2a1a;
+      --pink-100: #fdf2f8;
+      --pink-200: #fce7f3;
+      --pink-300: #fbcfe8;
+      --pink-400: #f9a8d4;
+      --pink-500: #f472b6;
+      --blush-50: #fef7f7;
+      --blush-100: #fff5f5;
+      --blush-200: #ffe4e6;
     }
 
     html {
@@ -40,6 +48,144 @@
       color: var(--forest-900);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    body.loaded {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Loading Screen - Page Fill Animation */
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .loader-bg-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--cream-100);
+      transform-origin: center top;
+      z-index: 1;
+    }
+
+    .loader-bg-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--cream-100);
+      transform-origin: center bottom;
+      z-index: 1;
+    }
+
+    .loader-fill-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(180deg,
+        var(--forest-300) 0%,
+        var(--forest-400) 15%,
+        var(--forest-500) 30%,
+        var(--forest-600) 50%,
+        var(--forest-700) 70%,
+        var(--forest-800) 85%,
+        var(--forest-900) 100%
+      );
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .loader-fill-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 40px;
+      background: radial-gradient(ellipse at center, var(--forest-200) 0%, transparent 70%);
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: translateX(-25%); }
+      50% { transform: translateX(0%); }
+    }
+
+    .loader-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      opacity: 0;
+      animation: contentFadeIn 0.5s ease forwards;
+    }
+
+    @keyframes contentFadeIn {
+      to { opacity: 1; }
+    }
+
+    .loader-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--forest-800);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .loader-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--forest-500);
+    }
+
+    .loader-hidden .loader-bg-top {
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    .loader-hidden .loader-bg-bottom {
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    .loader-hidden .loader-fill-container {
+      animation: fillUp 1.5s ease forwards;
+    }
+
+    .loader-hidden .loader-content {
+      animation: contentFadeOut 0.4s ease forwards;
+    }
+
+    @keyframes slideUp {
+      to { transform: translateY(-100%); }
+    }
+
+    @keyframes slideDown {
+      to { transform: translateY(100%); }
+    }
+
+    @keyframes fillUp {
+      0% { height: 0; }
+      100% { height: 100%; }
+    }
+
+    @keyframes contentFadeOut {
+      to { opacity: 0; }
     }
 
     .serif {
@@ -58,7 +204,7 @@
     }
 
     nav.scrolled {
-      background-color: rgba(253, 252, 249, 0.95);
+      background-color: rgba(254, 249, 240, 0.95);
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
@@ -132,9 +278,9 @@
       top: 80px;
       left: 0;
       right: 0;
-      background-color: rgba(253, 252, 249, 0.98);
+      background-color: rgba(254, 249, 240, 0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--forest-100);
+      border-bottom: 1px solid var(--cream-200);
       padding: 32px 24px;
     }
 
@@ -173,17 +319,19 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(to bottom, var(--cream-50) 0%, var(--cream-100) 100%);
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(250, 248, 242, 0.5), var(--cream-50));
+      background: radial-gradient(ellipse at 30% 20%, rgba(111, 165, 116, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 80%, rgba(244, 114, 182, 0.05) 0%, transparent 50%);
     }
 
     .hero-blob {
       position: absolute;
-      opacity: 0.1;
+      opacity: 0.15;
     }
 
     .hero-blob-1 {
@@ -191,7 +339,7 @@
       left: 40px;
       width: 256px;
       height: 256px;
-      background: var(--forest-300);
+      background: var(--forest-400);
       border-radius: 50%;
       filter: blur(64px);
     }
@@ -201,7 +349,7 @@
       right: 40px;
       width: 384px;
       height: 384px;
-      background: var(--forest-200);
+      background: var(--pink-400);
       border-radius: 50%;
       filter: blur(64px);
     }
@@ -222,7 +370,7 @@
       border-radius: 50%;
       overflow: hidden;
       background: var(--cream-100);
-      border: 1px solid var(--forest-200);
+      border: 1px solid var(--cream-200);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -268,7 +416,7 @@
       font-size: clamp(1.5rem, 4vw, 3rem);
       font-weight: 300;
       font-style: italic;
-      color: var(--forest-700);
+      color: var(--pink-500);
       margin-top: 16px;
     }
 
@@ -324,7 +472,7 @@
     .scroll-dot {
       width: 4px;
       height: 8px;
-      background: var(--forest-400);
+      background: var(--forest-500);
       border-radius: 2px;
       animation: bounce 2s infinite;
     }
@@ -387,9 +535,13 @@
       line-height: 1.6;
     }
 
-    /* Story Section */
+    /* Story Section - Pink/Blush Background */
     #story {
-      background-color: var(--cream-200);
+      background-color: var(--blush-200);
+    }
+
+    #story .section-label {
+      color: var(--pink-500);
     }
 
     .story-content {
@@ -405,7 +557,7 @@
       margin-bottom: 24px;
     }
 
-    /* Meet Section */
+    /* Meet Section - Cream Background */
     #meet {
       background-color: var(--cream-50);
     }
@@ -414,9 +566,10 @@
       max-width: 640px;
       margin: 0 auto;
       background: var(--cream-200);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 48px;
       text-align: center;
+      border: 1px solid rgba(184, 208, 186, 0.3);
     }
 
     @media (min-width: 768px) {
@@ -428,14 +581,14 @@
     .meet-avatar {
       width: 160px;
       height: 160px;
-      background: var(--forest-200);
+      background: var(--forest-100);
       border-radius: 50%;
       margin: 0 auto 24px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--forest-300);
+      border: 2px solid var(--forest-200);
     }
 
     .meet-avatar img {
@@ -452,10 +605,6 @@
       letter-spacing: 0.05em;
     }
 
-    .meet-avatar svg {
-      color: var(--forest-600);
-    }
-
     .meet-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.5rem;
@@ -465,7 +614,7 @@
     }
 
     .meet-role {
-      color: var(--forest-600);
+      color: var(--pink-500);
       font-size: 0.875rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -473,7 +622,7 @@
     }
 
     .meet-bio {
-      color: var(--forest-700);
+      color: var(--forest-800);
       font-weight: 300;
       line-height: 1.8;
       text-align: left;
@@ -489,14 +638,14 @@
       margin-bottom: 0;
     }
 
-    /* Schedule Section */
+    /* Schedule Section - Green Background */
     #schedule {
-      background-color: var(--forest-900);
+      background-color: var(--forest-700);
       color: var(--cream-100);
     }
 
     #schedule .section-label {
-      color: var(--forest-300);
+      color: var(--pink-300);
     }
 
     #schedule .section-title {
@@ -510,14 +659,15 @@
     }
 
     .schedule-item {
-      background: rgba(54, 66, 54, 0.5);
+      background: rgba(53, 101, 72, 0.5);
       backdrop-filter: blur(4px);
       border-radius: 4px;
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      border: 1px solid var(--forest-600);
     }
 
     @media (min-width: 768px) {
@@ -531,6 +681,7 @@
 
     .schedule-item:hover {
       background: var(--forest-800);
+      border-color: var(--pink-400);
     }
 
     .schedule-date {
@@ -541,12 +692,12 @@
     }
 
     .schedule-date svg {
-      color: var(--forest-300);
+      color: var(--pink-300);
       flex-shrink: 0;
     }
 
     .schedule-date span {
-      color: var(--forest-200);
+      color: var(--pink-200);
       font-weight: 500;
     }
 
@@ -570,7 +721,7 @@
       height: 16px;
     }
 
-    /* Menu Section */
+    /* Menu Section - Cream Background */
     #menu {
       background-color: var(--cream-50);
     }
@@ -589,8 +740,9 @@
 
     .menu-column {
       background: var(--cream-200);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 32px;
+      border: 1px solid rgba(184, 208, 186, 0.2);
     }
 
     .menu-title {
@@ -602,7 +754,7 @@
     }
 
     .menu-desc {
-      color: var(--forest-500);
+      color: var(--pink-500);
       font-size: 0.875rem;
       margin-bottom: 24px;
     }
@@ -630,9 +782,9 @@
       flex-shrink: 0;
     }
 
-    /* Brands Section */
+    /* Brands Section - Light Green Background */
     #brands {
-      background-color: var(--cream-200);
+      background-color: var(--forest-100);
     }
 
     .brands-grid {
@@ -658,17 +810,19 @@
       border-radius: 4px;
       padding: 24px;
       text-align: center;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      border: 1px solid var(--forest-200);
     }
 
     .brand-item:hover {
       background: var(--cream-100);
+      border-color: var(--forest-400);
     }
 
     .brand-icon {
       width: 40px;
       height: 40px;
-      background: var(--forest-100);
+      background: var(--forest-500);
       border-radius: 50%;
       margin: 0 auto 16px;
       display: flex;
@@ -678,11 +832,11 @@
     }
 
     .brand-item:hover .brand-icon {
-      background: var(--forest-200);
+      background: var(--forest-600);
     }
 
     .brand-icon svg {
-      color: var(--forest-600);
+      color: var(--cream-50);
       width: 18px;
       height: 18px;
     }
@@ -694,18 +848,9 @@
       line-height: 1.4;
     }
 
-    /* Contact Section */
+    /* Contact Section - Blush/Pink Background */
     #contact {
-      background-color: var(--forest-900);
-      color: var(--cream-100);
-    }
-
-    #contact .section-label {
-      color: var(--forest-300);
-    }
-
-    #contact .section-title {
-      color: var(--cream-100);
+      background-color: var(--pink-100);
     }
 
     .contact-intro {
@@ -715,13 +860,13 @@
     }
 
     .contact-intro p {
-      color: var(--forest-200);
+      color: var(--forest-700);
       font-weight: 300;
       line-height: 1.6;
     }
 
     .contact-intro .note {
-      color: var(--forest-400);
+      color: var(--pink-500);
       font-size: 0.875rem;
       margin-top: 16px;
     }
@@ -729,16 +874,17 @@
     .form-success {
       max-width: 640px;
       margin: 0 auto;
-      background: rgba(54, 66, 54, 0.5);
-      border-radius: 4px;
+      background: var(--cream-50);
+      border-radius: 8px;
       padding: 48px;
       text-align: center;
+      border: 2px solid var(--pink-300);
     }
 
     .form-success-icon {
       width: 64px;
       height: 64px;
-      background: var(--forest-700);
+      background: var(--forest-500);
       border-radius: 50%;
       margin: 0 auto 24px;
       display: flex;
@@ -747,7 +893,7 @@
     }
 
     .form-success-icon svg {
-      color: var(--forest-300);
+      color: var(--cream-50);
     }
 
     .form-success h3 {
@@ -755,16 +901,17 @@
       font-size: 1.5rem;
       font-weight: 500;
       margin-bottom: 16px;
+      color: var(--forest-900);
     }
 
     .form-success p {
-      color: var(--forest-200);
+      color: var(--forest-700);
       font-weight: 300;
     }
 
     .form-success .submit-another {
       margin-top: 24px;
-      color: var(--forest-300);
+      color: var(--forest-600);
       text-decoration: underline;
       font-size: 0.875rem;
       background: none;
@@ -774,7 +921,7 @@
     }
 
     .form-success .submit-another:hover {
-      color: var(--cream-100);
+      color: var(--forest-800);
     }
 
     .contact-form {
@@ -803,7 +950,7 @@
     }
 
     .form-group label {
-      color: var(--forest-200);
+      color: var(--forest-700);
       font-size: 0.875rem;
       margin-bottom: 8px;
     }
@@ -812,11 +959,11 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      background: rgba(54, 66, 54, 0.5);
-      border: 1px solid var(--forest-700);
+      background: var(--cream-50);
+      border: 1px solid var(--pink-300);
       border-radius: 4px;
       padding: 12px 16px;
-      color: var(--cream-100);
+      color: var(--forest-900);
       font-family: inherit;
       font-size: 1rem;
       transition: border-color 0.2s;
@@ -824,7 +971,7 @@
 
     .form-group input::placeholder,
     .form-group textarea::placeholder {
-      color: var(--forest-500);
+      color: var(--forest-400);
     }
 
     .form-group input:focus,
@@ -848,8 +995,8 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--cream-100);
-      color: var(--forest-900);
+      background: var(--forest-600);
+      color: var(--cream-50);
       border: none;
       border-radius: 4px;
       padding: 16px 32px;
@@ -859,7 +1006,7 @@
     }
 
     .form-submit button:hover {
-      background: var(--cream-200);
+      background: var(--forest-700);
     }
 
     .form-submit button:disabled {
@@ -867,9 +1014,21 @@
       cursor: not-allowed;
     }
 
-    /* Shop Section */
+    /* Shop Section - Green Background */
     #shop {
-      background-color: var(--cream-50);
+      background-color: var(--forest-800);
+    }
+
+    #shop .section-label {
+      color: var(--pink-300);
+    }
+
+    #shop .section-title {
+      color: var(--cream-100);
+    }
+
+    #shop .section-subtitle {
+      color: var(--forest-200);
     }
 
     .shop-content {
@@ -879,7 +1038,7 @@
     .shop-icon {
       width: 80px;
       height: 80px;
-      background: var(--forest-100);
+      background: var(--pink-400);
       border-radius: 50%;
       margin: 0 auto 32px;
       display: flex;
@@ -888,7 +1047,7 @@
     }
 
     .shop-icon svg {
-      color: var(--forest-600);
+      color: var(--cream-50);
     }
 
     .email-list {
@@ -902,12 +1061,12 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.5rem;
       font-weight: 500;
-      color: var(--forest-900);
+      color: var(--cream-100);
       margin-bottom: 8px;
     }
 
     .email-list-desc {
-      color: var(--forest-600);
+      color: var(--forest-300);
       font-size: 0.95rem;
       font-weight: 300;
       margin-bottom: 24px;
@@ -922,22 +1081,22 @@
     .email-list-form input {
       flex: 1;
       padding: 14px 16px;
-      border: 1px solid var(--forest-300);
+      border: 1px solid var(--forest-600);
       border-radius: 4px;
-      background: var(--cream-50);
-      color: var(--forest-900);
+      background: var(--forest-700);
+      color: var(--cream-100);
       font-family: inherit;
       font-size: 0.95rem;
       transition: border-color 0.2s;
     }
 
     .email-list-form input::placeholder {
-      color: var(--forest-500);
+      color: var(--forest-400);
     }
 
     .email-list-form input:focus {
       outline: none;
-      border-color: var(--forest-600);
+      border-color: var(--pink-400);
     }
 
     .email-list-form button {
@@ -945,7 +1104,7 @@
       align-items: center;
       gap: 8px;
       padding: 14px 24px;
-      background: var(--forest-600);
+      background: var(--pink-500);
       color: var(--cream-50);
       border: none;
       border-radius: 4px;
@@ -957,7 +1116,7 @@
     }
 
     .email-list-form button:hover {
-      background: var(--forest-700);
+      background: var(--pink-600);
     }
 
     .email-list-form button:disabled {
@@ -967,13 +1126,14 @@
 
     .email-list-success {
       margin-top: 16px;
-      color: var(--forest-600);
+      color: var(--pink-300);
       font-size: 0.9rem;
       font-weight: 400;
       padding: 12px 16px;
-      background: var(--forest-100);
+      background: var(--forest-700);
       border-radius: 4px;
       text-align: center;
+      border: 1px solid var(--pink-500);
     }
 
     @media (max-width: 480px) {
@@ -982,10 +1142,10 @@
       }
     }
 
-    /* Footer */
+    /* Footer - Dark Green */
     footer {
       background-color: var(--forest-900);
-      color: var(--cream-200);
+      color: var(--forest-200);
       padding: 48px 24px;
     }
 
@@ -1027,12 +1187,12 @@
     }
 
     .footer-socials a {
-      color: var(--forest-400);
+      color: var(--pink-400);
       transition: color 0.2s;
     }
 
     .footer-socials a:hover {
-      color: var(--cream-100);
+      color: var(--pink-300);
     }
 
     .footer-bottom {
@@ -1049,6 +1209,17 @@
   </style>
 </head>
 <body>
+  <!-- Loading Screen - Page Fill Animation -->
+  <div class="loader-overlay" id="loaderOverlay">
+    <div class="loader-bg-top"></div>
+    <div class="loader-bg-bottom"></div>
+    <div class="loader-fill-container"></div>
+    <div class="loader-content">
+      <p class="loader-logo">Glow Hour</p>
+      <p class="loader-tagline">Matcha</p>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-inner">
@@ -1594,6 +1765,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // Loading animation - Page Fill
+    const loader = document.getElementById('loaderOverlay');
+
+    window.addEventListener('load', () => {
+      // Start fill animation after short delay
+      setTimeout(() => {
+        loader.classList.add('loader-hidden');
+      }, 600);
+
+      // Remove loader completely after animation
+      setTimeout(() => {
+        loader.style.display = 'none';
+        document.body.classList.add('loaded');
+      }, 2200);
+    });
+
     // Navigation scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
