@@ -260,7 +260,7 @@
     .hero-bg-image {
       position: absolute;
       inset: 0;
-      background-image: url('GlowHour.png');
+      background-image: url('https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=1920');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -268,14 +268,22 @@
       z-index: 1;
     }
 
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(165deg, var(--cream-50) 0%, var(--sage-100) 50%, var(--cream-100) 100%);
+      opacity: 0.85;
+      z-index: 2;
+    }
+
     .hero-pattern {
       position: absolute;
       inset: 0;
-      opacity: 0.4;
+      opacity: 0.3;
       background-image:
         radial-gradient(circle at 15% 25%, var(--forest-200) 0%, transparent 40%),
         radial-gradient(circle at 85% 75%, var(--pink-200) 0%, transparent 35%);
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-line {
@@ -283,6 +291,7 @@
       width: 1px;
       height: 200px;
       background: linear-gradient(to bottom, transparent, var(--forest-300), transparent);
+      z-index: 4;
     }
 
     .hero-line-1 { top: 10%; left: 20%; transform: rotate(25deg); }
@@ -402,6 +411,7 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      z-index: 10;
     }
 
     .scroll-text {
@@ -491,8 +501,30 @@
 
     /* Story Section */
     #story {
-      background-color: var(--blush-100);
       position: relative;
+      overflow: hidden;
+    }
+
+    .story-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/3248802/pexels-photo-3248802.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    .story-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blush-100) 0%, rgba(254, 245, 243, 0.9) 50%, var(--blush-100) 100%);
+      z-index: 1;
+    }
+
+    #story .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     #story::before {
@@ -503,6 +535,7 @@
       right: 0;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--pink-300), transparent);
+      z-index: 3;
     }
 
     #story .section-label {
@@ -533,7 +566,30 @@
 
     /* Meet Section */
     #meet {
-      background-color: var(--cream-50);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .meet-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .meet-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--cream-50);
+      z-index: 1;
+    }
+
+    #meet .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .meet-card {
@@ -616,9 +672,31 @@
 
     /* Schedule Section */
     #schedule {
-      background-color: var(--forest-900);
-      color: var(--cream-100);
       position: relative;
+      overflow: hidden;
+      color: var(--cream-100);
+    }
+
+    .schedule-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/6830372/pexels-photo-6830372.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .schedule-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--forest-900);
+      z-index: 1;
+    }
+
+    #schedule .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     #schedule .section-label {
@@ -688,8 +766,30 @@
 
     /* Menu Section */
     #menu {
-      background-color: var(--cream-50);
       position: relative;
+      overflow: hidden;
+    }
+
+    .menu-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/1589762/pexels-photo-1589762.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      z-index: 0;
+    }
+
+    .menu-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--cream-50);
+      z-index: 1;
+    }
+
+    #menu .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     #menu::after {
@@ -701,83 +801,123 @@
       width: 1px;
       height: 80px;
       background: linear-gradient(to bottom, var(--forest-300), transparent);
+      z-index: 3;
     }
 
-    .menu-grid {
+    .menu-category-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--forest-900);
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--forest-200);
+    }
+
+    .menu-category-desc {
+      text-align: center;
+      color: var(--forest-600);
+      font-size: 0.9rem;
+      margin-top: -30px;
+      margin-bottom: 40px;
+    }
+
+    .menu-drinks-grid {
       display: grid;
-      gap: 40px;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
     }
 
-    @media (min-width: 768px) {
-      .menu-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 50px;
+    @media (min-width: 640px) {
+      .menu-drinks-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    .menu-column {
-      padding: 40px 30px;
-      position: relative;
+    @media (min-width: 1024px) {
+      .menu-drinks-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
     }
 
-    .menu-column::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid var(--forest-200);
-      border-radius: 2px;
-      pointer-events: none;
-      transition: border-color 0.3s;
+    .menu-drink-card {
+      background: var(--cream-100);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--cream-200);
     }
 
-    .menu-column:hover::before {
+    .menu-drink-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(31, 51, 34, 0.1);
       border-color: var(--gold-400);
     }
 
-    .menu-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--forest-900);
-      margin-bottom: 6px;
-    }
-
-    .menu-desc {
-      color: var(--pink-500);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 28px;
-    }
-
-    .menu-list {
-      list-style: none;
-    }
-
-    .menu-list li {
-      color: var(--forest-700);
-      font-weight: 400;
-      margin-bottom: 14px;
-      padding-left: 16px;
+    .drink-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--sage-100) 0%, var(--cream-200) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
-      line-height: 1.6;
+      overflow: hidden;
     }
 
-    .menu-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 4px;
-      height: 4px;
-      background: var(--gold-400);
-      border-radius: 50%;
+    .drink-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .drink-image .placeholder-icon {
+      color: var(--forest-400);
+      opacity: 0.5;
+    }
+
+    .drink-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .drink-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--forest-900);
+      margin-bottom: 4px;
     }
 
     /* Brands Section */
     #brands {
-      background-color: var(--forest-100);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brands-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      z-index: 0;
+    }
+
+    .brands-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--forest-100);
+      z-index: 1;
+    }
+
+    #brands .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .brands-grid {
@@ -847,6 +987,16 @@
       position: relative;
     }
 
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      z-index: 0;
+    }
+
     #contact::before {
       content: '';
       position: absolute;
@@ -855,6 +1005,12 @@
       right: 0;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--pink-300), transparent);
+      z-index: 1;
+    }
+
+    #contact .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .contact-intro {
@@ -1027,8 +1183,30 @@
 
     /* Shop Section */
     #shop {
-      background-color: var(--forest-900);
       position: relative;
+      overflow: hidden;
+    }
+
+    .shop-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/585752/pexels-photo-585752.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+    }
+
+    .shop-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--forest-900);
+      z-index: 1;
+    }
+
+    #shop .section-inner {
+      position: relative;
+      z-index: 2;
     }
 
     #shop::before {
@@ -1040,6 +1218,7 @@
       width: 1px;
       height: 80px;
       background: linear-gradient(to bottom, var(--forest-600), transparent);
+      z-index: 3;
     }
 
     #shop .section-label {
@@ -1112,6 +1291,7 @@
       font-family: inherit;
       font-size: 0.9rem;
       transition: border-color 0.2s;
+      z-index: 10;
     }
 
     .email-list-form input::placeholder {
@@ -1302,6 +1482,7 @@
   <!-- Hero Section -->
   <section id="home">
     <div class="hero-bg-image"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-pattern"></div>
     <div class="hero-line hero-line-1"></div>
     <div class="hero-line hero-line-2"></div>
@@ -1334,6 +1515,8 @@
 
   <!-- Story Section -->
   <section id="story">
+    <div class="story-bg"></div>
+    <div class="story-overlay"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Our Story</p>
@@ -1352,6 +1535,8 @@
 
   <!-- Meet Us Section -->
   <section id="meet">
+    <div class="meet-bg"></div>
+    <div class="meet-overlay"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Meet Us</p>
@@ -1375,6 +1560,8 @@
 
   <!-- Schedule Section -->
   <section id="schedule">
+    <div class="schedule-bg"></div>
+    <div class="schedule-overlay"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Our Schedule</p>
@@ -1483,42 +1670,126 @@
 
   <!-- Menu Section -->
   <section id="menu">
+    <div class="menu-bg"></div>
+    <div class="menu-overlay"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Our Menu</p>
         <h2 class="section-title">Crafted with Care</h2>
         <p class="section-subtitle">Almost all of our drinks are served with oat milk. Each cup is prepared with intention and quality.</p>
       </div>
-      <div class="menu-grid">
-        <div class="menu-column">
-          <h3 class="menu-title">Signature Matcha</h3>
-          <p class="menu-desc">Our classics, perfected</p>
-          <ul class="menu-list">
-            <li>Ube Matcha</li>
-            <li>Coconut Cloud Matcha</li>
-            <li>Tokyo Fog Matcha</li>
-            <li>Banana Bread Matcha</li>
-          </ul>
+
+      <!-- Signature Matcha -->
+      <h3 class="menu-category-title">Signature Matcha</h3>
+      <p class="menu-category-desc">Our classics, perfected</p>
+      <div class="menu-drinks-grid">
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1684151/pexels-photo-1684151.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ube Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Ube Matcha</p>
+          </div>
         </div>
-        <div class="menu-column">
-          <h3 class="menu-title">Specialty Matcha</h3>
-          <p class="menu-desc">Unique flavor experiences</p>
-          <ul class="menu-list">
-            <li>Mango Coconut Matcha</li>
-            <li>Lychee Matcha</li>
-            <li>Jasmine Matcha</li>
-            <li>Blueberry Matcha</li>
-          </ul>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Coconut Cloud Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Coconut Cloud Matcha</p>
+          </div>
         </div>
-        <div class="menu-column">
-          <h3 class="menu-title">Vietnamese Coffee</h3>
-          <p class="menu-desc">A nod to our heritage</p>
-          <ul class="menu-list">
-            <li>Signature Viet Coffee</li>
-            <li>Ube Viet Coffee</li>
-            <li>Salted Cold Foam Viet Coffee</li>
-            <li>Coconut Cold Foam Viet Coffee</li>
-          </ul>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1589762/pexels-photo-1589762.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tokyo Fog Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Tokyo Fog Matcha</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1647163/pexels-photo-1647163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Banana Bread Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Banana Bread Matcha</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specialty Matcha -->
+      <h3 class="menu-category-title">Specialty Matcha</h3>
+      <p class="menu-category-desc">Unique flavor experiences</p>
+      <div class="menu-drinks-grid">
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1459426/pexels-photo-1459426.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mango Coconut Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Mango Coconut Matcha</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1415131/pexels-photo-1415131.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lychee Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Lychee Matcha</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1589762/pexels-photo-1589762.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jasmine Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Jasmine Matcha</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1459426/pexels-photo-1459426.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Blueberry Matcha">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Blueberry Matcha</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vietnamese Coffee -->
+      <h3 class="menu-category-title">Vietnamese Coffee</h3>
+      <p class="menu-category-desc">A nod to our heritage</p>
+      <div class="menu-drinks-grid">
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1695058/pexels-photo-1695058.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Signature Viet Coffee">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Signature Viet Coffee</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1684151/pexels-photo-1684151.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ube Viet Coffee">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Ube Viet Coffee</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1833000/pexels-photo-1833000.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Salted Cold Foam Viet Coffee">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Salted Cold Foam Viet Coffee</p>
+          </div>
+        </div>
+        <div class="menu-drink-card">
+          <div class="drink-image">
+            <img src="https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Coconut Cold Foam Viet Coffee">
+          </div>
+          <div class="drink-info">
+            <p class="drink-name">Coconut Cold Foam Viet Coffee</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1526,6 +1797,8 @@
 
   <!-- Brands Section -->
   <section id="brands">
+    <div class="brands-bg"></div>
+    <div class="brands-overlay"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Collaborations</p>
@@ -1659,6 +1932,7 @@
 
   <!-- Contact Section -->
   <section id="contact">
+    <div class="contact-bg"></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Book Us</p>
@@ -1740,6 +2014,8 @@
 
   <!-- Shop Section -->
   <section id="shop">
+    <div class="shop-bg"></div>
+    <div class="shop-overlay"></div>
     <div class="section-inner">
       <div class="shop-content">
         <div class="shop-icon">
